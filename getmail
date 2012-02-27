@@ -686,7 +686,7 @@ def main():
 
     except KeyboardInterrupt:
         log.warning('Operation aborted by user (keyboard interrupt)\n')
-        sys.exit(0)
+        sys.exit(1)
     except getmailConfigurationError, o:
         log.error('Configuration error: %s\n' % o)
         sys.exit(2)
