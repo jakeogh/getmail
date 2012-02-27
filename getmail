@@ -429,8 +429,8 @@ def main():
             if not os.path.exists(path):
                 raise getmailOperationError('configuration file %s does '
                                             'not exist' % path)
-            elif not os.path.isfile(path):
-                raise getmailOperationError('%s is not a file' % path)
+#            elif not os.path.isfile(path):		#this check would prevent gpgmda from accepting a config file that is a fifo
+#                raise getmailOperationError('%s is not a file' % path)
             f = open(path, 'rb')
             config = {
                 'verbose' : defaults['verbose'],
