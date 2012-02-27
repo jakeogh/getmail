@@ -146,7 +146,7 @@ class Maildir(DeliverySkeleton, ForkingBase):
                         'refuse to deliver mail as GID 0'
                     )
             f = deliver_maildir(
-                self.conf['path'], msg.flatten(delivered_to, received),
+		self.conf['path'], msg._Message__raw,
                 self.hostname, self.dcount, self.conf['filemode']
             )
             stdout.write(f)
@@ -671,8 +671,7 @@ class MDA_external(DeliverySkeleton, ForkingBase):
         try:
             # Write out message with native EOL convention
             msgfile = tempfile.TemporaryFile()
-            msgfile.write(msg.flatten(delivered_to, received,
-                                      include_from=self.conf['unixfrom']))
+	    msgfile.write(msg._Message__raw)
             msgfile.flush()
             os.fsync(msgfile.fileno())
             # Rewind
